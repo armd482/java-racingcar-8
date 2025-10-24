@@ -1,6 +1,7 @@
 package racingcar.util;
 
 import java.util.Arrays;
+import racingcar.constant.ErrorMessage;
 
 public class InputParser {
 
@@ -10,7 +11,7 @@ public class InputParser {
 
     public static String[] parseCarNames(String carNamesInput) {
         if (carNamesInput == null || carNamesInput.isBlank()) {
-            throw new IllegalArgumentException("자동차 이름들을 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_CAR_NAME_INPUT);
         }
 
         String[] carNames = carNamesInput.split(CAR_NAME_SEPARATOR);
@@ -24,7 +25,7 @@ public class InputParser {
 
     private static void validateMinimumCarCount(String[] carNames) {
         if(carNames.length < MIN_CAR_COUNT) {
-            throw new IllegalArgumentException("자동차는 2개 이상부터 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.MINIMUM_CAR_COUNT);
         }
     }
 
@@ -32,14 +33,14 @@ public class InputParser {
         boolean isValidateCarNames = Arrays.stream(carNames)
                                             .allMatch(name -> !name.isBlank() && name.length() <= MAX_CAR_NAME_LENGTH);
         if(!isValidateCarNames) {
-            throw new IllegalArgumentException("자동차 이름은 공백일 수 없으며, 5글자 이하로만 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME_LENGTH);
         }
     }
 
     private static void validateDuplicateCarNames(String[] carNames) {
         boolean hasDuplicateCarNames = Arrays.stream(carNames).distinct().count() != carNames.length;
         if(hasDuplicateCarNames) {
-            throw new IllegalArgumentException("중복된 이름은 설정할 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_CAR_NAME);
         }
     }
 }
