@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class InputParser {
 
+    private static final int MIN_CAR_COUNT = 2;
     private static final int MAX_CAR_NAME_LENGTH = 5;
     private static final String CAR_NAME_SEPARATOR = ",";
 
@@ -22,7 +23,7 @@ public class InputParser {
     }
 
     private static void validateMinimumCarCount(String[] carNames) {
-        if(carNames.length < 2) {
+        if(carNames.length < MIN_CAR_COUNT) {
             throw new IllegalArgumentException("자동차는 2개 이상부터 가능합니다.");
         }
     }
