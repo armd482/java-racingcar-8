@@ -13,7 +13,7 @@ public class RaceGame {
 
     private final List<Car> cars;
     private final int attempts;
-    private final List<List<Car>> roundStatus =  new ArrayList<>();
+    private final List<List<CarStatus>> roundStatus =  new ArrayList<>();
 
     public RaceGame(List<Car> cars, int attempts) {
         this.cars = cars;
@@ -27,7 +27,7 @@ public class RaceGame {
         }
     }
 
-    public List<List<Car>> getRoundResult () {
+    public List<List<CarStatus>> getRoundResult () {
         return roundStatus;
     }
 
@@ -55,9 +55,9 @@ public class RaceGame {
         }
     }
 
-    private List<Car> getCarRoundStatus() {
+    private List<CarStatus> getCarRoundStatus() {
         return cars.stream()
-                .map(car -> new Car(car.getName(), car.getPosition()))
+                .map(car -> new CarStatus(car.getName(), car.getPosition()))
                 .toList();
     }
 }
