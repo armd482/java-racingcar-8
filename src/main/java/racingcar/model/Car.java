@@ -9,8 +9,8 @@ public class Car {
         this.position = 0;
     }
 
-    public void go(int distance) {
-        position += distance;
+    public void go() {
+        position ++;
     }
 
     public String getName() {
