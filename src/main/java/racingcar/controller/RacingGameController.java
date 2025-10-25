@@ -1,5 +1,9 @@
 package racingcar.controller;
 
+import java.util.Arrays;
+import java.util.List;
+import racingcar.model.Car;
+import racingcar.model.RaceGame;
 import racingcar.util.InputParser;
 import racingcar.view.InputView;
 
@@ -11,10 +15,17 @@ public class RacingGameController {
     }
 
     public void run() {
-        String carNames = inputView.getCarName();
-        String attempt = inputView.getAttempt();
+        String carsInput = inputView.getCarName();
+        String[] carNames = InputParser.parseCarNames(carsInput);
+        List<Car> cars = Arrays.stream(carNames).map(Car::new).toList();
 
-        System.out.println(carNames);
-        System.out.println(attempt);
+        String attemptInput = inputView.getAttempt();
+        int attempt = InputParser.parseAttempt(attemptInput);
+
+        RaceGame raceGame = new RaceGame(cars, attempt);
+
+        raceGame.start();
+
+        System.out.println(raceGame.getWinnerNames());
     }
 }

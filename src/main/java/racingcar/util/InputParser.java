@@ -23,6 +23,22 @@ public class InputParser {
         return carNames;
     }
 
+    public static Integer parseAttempt(String attemptInput) {
+        if (attemptInput == null || attemptInput.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_ATTMEPT_INPUT);
+        }
+
+        try {
+            int attempt = Integer.parseInt(attemptInput);
+            if(attempt < 0) {
+                throw new IllegalArgumentException(ErrorMessage.INVALID_NEGATIVE_ATTEMPT);
+            }
+            return attempt;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ATTEMPT_FORMAT);
+        }
+    }
+
     private static void validateMinimumCarCount(String[] carNames) {
         if(carNames.length < MIN_CAR_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.MINIMUM_CAR_COUNT);
