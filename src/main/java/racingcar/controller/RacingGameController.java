@@ -3,7 +3,9 @@ package racingcar.controller;
 import java.util.Arrays;
 import java.util.List;
 import racingcar.model.Car;
+import racingcar.model.CarStatus;
 import racingcar.model.RaceGame;
+import racingcar.model.strategy.RandomMoveStrategy;
 import racingcar.util.InputParser;
 import racingcar.view.InputView;
 
@@ -22,9 +24,16 @@ public class RacingGameController {
         String attemptInput = inputView.getAttempt();
         int attempt = InputParser.parseAttempt(attemptInput);
 
-        RaceGame raceGame = new RaceGame(cars, attempt);
+        RaceGame raceGame = new RaceGame(cars, attempt, new RandomMoveStrategy());
 
         raceGame.start();
+        List<List<CarStatus>> roundResult = raceGame.getRoundResult();
+        roundResult.forEach(carStatusList -> {
+            carStatusList.forEach(carStatus -> {
+                System.out.println(carStatus.name() + " : " + carStatus.position());
+            });
+            System.out.println();
+        });
 
         System.out.println(raceGame.getWinnerNames());
     }

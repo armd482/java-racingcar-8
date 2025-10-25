@@ -1,23 +1,21 @@
 package racingcar.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import racingcar.model.strategy.MoveStrategy;
 
 public class RaceGame {
 
-    private static final int RANDOM_MIN_VALUE = 0;
-    private static final int RANDOM_MAX_VALUE = 9;
-    private static final int MOVE_THRESHOLD = 4;
-
     private final List<Car> cars;
     private final int attempts;
+    private final MoveStrategy moveStrategy;
     private final List<List<CarStatus>> roundStatus =  new ArrayList<>();
 
-    public RaceGame(List<Car> cars, int attempts) {
+    public RaceGame(List<Car> cars, int attempts, MoveStrategy moveStrategy) {
         this.cars = cars;
+        this.moveStrategy = moveStrategy;
         this.attempts = attempts;
+
     }
 
     public void start() {
@@ -49,8 +47,7 @@ public class RaceGame {
     }
 
     private void carMove(Car car) {
-        int randomValue = Randoms.pickNumberInRange(RANDOM_MIN_VALUE, RANDOM_MAX_VALUE);
-        if (randomValue < MOVE_THRESHOLD) {
+        if (moveStrategy.isMoveable()) {
             car.go();
         }
     }
