@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 
 public class RaceGame {
 
-    private final int RANDOM_MIN_VALUE = 0;
-    private final int RANDOM_MAX_VALUE = 9;
-    private final int MOVE_THRESHOLD = 4;
+    private static final int RANDOM_MIN_VALUE = 0;
+    private static final int RANDOM_MAX_VALUE = 9;
+    private static final int MOVE_THRESHOLD = 4;
 
     private final List<Car> cars;
     private final int attempts;
-    private final List<List<String>> roundStatus =  new ArrayList<>();
+    private final List<List<Car>> roundStatus =  new ArrayList<>();
 
     public RaceGame(List<Car> cars, int attempts) {
         this.cars = cars;
@@ -27,11 +27,11 @@ public class RaceGame {
         }
     }
 
-    public List<List<String>> getRoundResult () {
+    public List<List<Car>> getRoundResult () {
         return roundStatus;
     }
 
-    public List<String> getWinner() {
+    public List<String> getWinnerNames() {
         int maxPosition = cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
@@ -55,11 +55,9 @@ public class RaceGame {
         }
     }
 
-    private List<String> getCarRoundStatus() {
+    private List<Car> getCarRoundStatus() {
         return cars.stream()
-                .map(car -> car.getName() + " : " + "-".repeat(car.getPosition()))
-                .collect(Collectors.toList());
+                .map(car -> new Car(car.getName(), car.getPosition()))
+                .toList();
     }
-
-
 }
