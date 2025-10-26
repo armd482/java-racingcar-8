@@ -1,6 +1,7 @@
 package racingcar.util;
 
 import java.util.Arrays;
+import java.util.List;
 import racingcar.constant.ErrorMessage;
 
 public class InputParser {
@@ -9,12 +10,12 @@ public class InputParser {
     private static final int MAX_CAR_NAME_LENGTH = 5;
     private static final String CAR_NAME_SEPARATOR = ",";
 
-    public static String[] parseCarNames(String carNamesInput) {
+    public static List<String> parseCarNames(String carNamesInput) {
         if (carNamesInput == null || carNamesInput.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.EMPTY_CAR_NAME_INPUT.getMessage());
         }
 
-        String[] carNames = carNamesInput.split(CAR_NAME_SEPARATOR);
+        List<String> carNames = Arrays.stream(carNamesInput.split(CAR_NAME_SEPARATOR)).toList();
 
         validateMinimumCarCount(carNames);
         validateCarNameLength(carNames);
@@ -39,22 +40,23 @@ public class InputParser {
         }
     }
 
-    private static void validateMinimumCarCount(String[] carNames) {
-        if(carNames.length < MIN_CAR_COUNT) {
+    private static void validateMinimumCarCount(List<String> carNames) {
+        if(carNames.size() < MIN_CAR_COUNT) {
             throw new IllegalArgumentException(ErrorMessage.MINIMUM_CAR_COUNT.getMessage());
         }
     }
 
-    private static void validateCarNameLength(String[] carNames) {
-        boolean isValidateCarNames = Arrays.stream(carNames)
-                                            .allMatch(name -> !name.isBlank() && name.length() <= MAX_CAR_NAME_LENGTH);
+    private static void validateCarNameLength(List<String> carNames) {
+        boolean isValidateCarNames = carNames.stream()
+                                                .allMatch(name -> !name.isBlank() && name.length() <= MAX_CAR_NAME_LENGTH);
         if(!isValidateCarNames) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME_LENGTH.getMessage());
         }
     }
 
-    private static void validateDuplicateCarNames(String[] carNames) {
-        boolean hasDuplicateCarNames = Arrays.stream(carNames).distinct().count() != carNames.length;
+    private static void validateDuplicateCarNames(List<String> carNames) {
+        boolean hasDuplicateCarNames = carNames.stream()
+                                                .distinct().count() != carNames.size();
         if(hasDuplicateCarNames) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_CAR_NAME.getMessage());
         }

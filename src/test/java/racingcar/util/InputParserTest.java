@@ -1,5 +1,6 @@
 package racingcar.util;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.constant.ErrorMessage;
@@ -17,7 +18,7 @@ public class InputParserTest {
     @Test
     @DisplayName("정상 입력한 경우 - 자동차 이름 배열 리턴")
     void carNamesParseTest() {
-        String[] result = InputParser.parseCarNames(VALID_CAR_NAMES_INPUT);
+        List<String> result = InputParser.parseCarNames(VALID_CAR_NAMES_INPUT);
         assertThat(result).containsExactly("pobi", "woni", "jun");
     }
 

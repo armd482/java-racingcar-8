@@ -1,7 +1,6 @@
 package racingcar.util;
 
 import java.util.List;
-import java.util.stream.Stream;
 import racingcar.model.CarStatus;
 
 public class OutputParser {
