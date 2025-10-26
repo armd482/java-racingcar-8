@@ -26,7 +26,7 @@ public class InputParserTest {
     void blankInputParseTest() {
         assertThatThrownBy(() -> InputParser.parseCarNames(EMPTY_INPUT))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.EMPTY_CAR_NAME_INPUT);
+                .hasMessage(ErrorMessage.EMPTY_CAR_NAME_INPUT.getMessage());
     }
 
     @Test
@@ -34,7 +34,7 @@ public class InputParserTest {
     void oneCarParseTest() {
         assertThatThrownBy(() -> InputParser.parseCarNames(ONE_CAR_INPUT))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.MINIMUM_CAR_COUNT);
+                .hasMessage(ErrorMessage.MINIMUM_CAR_COUNT.getMessage());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class InputParserTest {
     void longCarNamesParseTest() {
         assertThatThrownBy(() -> InputParser.parseCarNames(LONG_CAR_NAME_INPUT))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALID_CAR_NAME_LENGTH);
+                .hasMessage(ErrorMessage.INVALID_CAR_NAME_LENGTH.getMessage());
     }
 
     @Test
@@ -50,7 +50,7 @@ public class InputParserTest {
     void blankCarNamesParseTest() {
         assertThatThrownBy(() -> InputParser.parseCarNames(EMPTY_CAR_NAME_INPUT))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.INVALID_CAR_NAME_LENGTH);
+                .hasMessage(ErrorMessage.INVALID_CAR_NAME_LENGTH.getMessage());
     }
 
     @Test
@@ -58,6 +58,6 @@ public class InputParserTest {
     void duplicateCarNamesParseTest() {
         assertThatThrownBy(() -> InputParser.parseCarNames(DUPLICATE_CAR_NAME_INPUT))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.DUPLICATE_CAR_NAME);
+                .hasMessage(ErrorMessage.DUPLICATE_CAR_NAME.getMessage());
     }
 }

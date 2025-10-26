@@ -11,7 +11,7 @@ public class InputParser {
 
     public static String[] parseCarNames(String carNamesInput) {
         if (carNamesInput == null || carNamesInput.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.EMPTY_CAR_NAME_INPUT);
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_CAR_NAME_INPUT.getMessage());
         }
 
         String[] carNames = carNamesInput.split(CAR_NAME_SEPARATOR);
@@ -25,23 +25,23 @@ public class InputParser {
 
     public static Integer parseAttempt(String attemptInput) {
         if (attemptInput == null || attemptInput.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.EMPTY_ATTEMEPT_INPUT);
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_ATTEMEPT_INPUT.getMessage());
         }
 
         try {
             int attempt = Integer.parseInt(attemptInput);
             if(attempt < 0) {
-                throw new IllegalArgumentException(ErrorMessage.INVALID_NEGATIVE_ATTEMPT);
+                throw new IllegalArgumentException(ErrorMessage.INVALID_NEGATIVE_ATTEMPT.getMessage());
             }
             return attempt;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_ATTEMPT_FORMAT);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_ATTEMPT_FORMAT.getMessage());
         }
     }
 
     private static void validateMinimumCarCount(String[] carNames) {
         if(carNames.length < MIN_CAR_COUNT) {
-            throw new IllegalArgumentException(ErrorMessage.MINIMUM_CAR_COUNT);
+            throw new IllegalArgumentException(ErrorMessage.MINIMUM_CAR_COUNT.getMessage());
         }
     }
 
@@ -49,14 +49,14 @@ public class InputParser {
         boolean isValidateCarNames = Arrays.stream(carNames)
                                             .allMatch(name -> !name.isBlank() && name.length() <= MAX_CAR_NAME_LENGTH);
         if(!isValidateCarNames) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME_LENGTH);
+            throw new IllegalArgumentException(ErrorMessage.INVALID_CAR_NAME_LENGTH.getMessage());
         }
     }
 
     private static void validateDuplicateCarNames(String[] carNames) {
         boolean hasDuplicateCarNames = Arrays.stream(carNames).distinct().count() != carNames.length;
         if(hasDuplicateCarNames) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_CAR_NAME);
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_CAR_NAME.getMessage());
         }
     }
 }
