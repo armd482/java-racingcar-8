@@ -3,7 +3,6 @@ package racingcar.controller;
 import java.util.Arrays;
 import java.util.List;
 import racingcar.model.Car;
-import racingcar.model.CarStatus;
 import racingcar.model.RaceGame;
 import racingcar.model.strategy.RandomMoveStrategy;
 import racingcar.util.InputParser;
@@ -32,7 +31,7 @@ public class RacingGameController {
 
         raceGame.start();
 
-        List<String> roundResult =  OutputParser.formatRoundResults(raceGame.getRoundResult());
+        List<List<String>> roundResult =  OutputParser.formatRoundResults(raceGame.getRoundResult());
         String winners = OutputParser.formatWinnerList(raceGame.getWinnerNames());
 
         outputView.displayRoundResult(roundResult);

@@ -10,9 +10,9 @@ public class OutputParserTest {
     @DisplayName("라운드 결과 포맷팅 테스트")
     void formatCarPositionTest() {
         List<CarStatus> carStatuses = List.of(new CarStatus("pobi", 3),  new CarStatus("woni", 1));
-        List<String> result = OutputParser.formatRoundResults(List.of(carStatuses));
+        List<List<String>> result = OutputParser.formatRoundResults(List.of(carStatuses));
 
-        assertThat(result).contains("pobi : ---", "woni : -");
+        assertThat(result.getFirst()).containsExactly("pobi : ---", "woni : -");
     }
 
     @Test
@@ -22,11 +22,10 @@ public class OutputParserTest {
                 List.of(new CarStatus("pobi", 1),  new CarStatus("woni", 0)),
                 List.of(new CarStatus("pobi", 2),  new CarStatus("woni", 1))
         );
-        List<String> result = OutputParser.formatRoundResults(roundResult);
-        assertThat(result).containsExactly(
-                "pobi : -", "woni : ", "",
-                "pobi : --", "woni : -", ""
-        );
+        List<List<String>> result = OutputParser.formatRoundResults(roundResult);
+
+        assertThat(result.getFirst()).containsExactly("pobi : -", "woni : ");
+        assertThat(result.get(1)).containsExactly("pobi : --", "woni : -");
     }
 
     @Test

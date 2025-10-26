@@ -11,10 +11,10 @@ public class OutputParser {
                             .repeat(carStatus.position())).toList();
     }
 
-    public static List<String> formatRoundResults(List<List<CarStatus>> carStatuses) {
+    public static List<List<String>> formatRoundResults(List<List<CarStatus>> carStatuses) {
         return carStatuses.stream()
-                            .flatMap(round -> Stream.concat(formatCarPositions(round).stream(), Stream.of("")))
-                            .toList();
+                .map(OutputParser::formatCarPositions)
+                .toList();
     }
 
     public static String formatWinnerList(List<String> winners) {
