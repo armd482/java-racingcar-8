@@ -7,6 +7,7 @@ import racingcar.model.CarStatus;
 import racingcar.model.RaceGame;
 import racingcar.model.strategy.RandomMoveStrategy;
 import racingcar.util.InputParser;
+import racingcar.util.OutputParser;
 import racingcar.view.InputView;
 
 public class RacingGameController {
@@ -28,13 +29,12 @@ public class RacingGameController {
 
         raceGame.start();
         List<List<CarStatus>> roundResult = raceGame.getRoundResult();
-        roundResult.forEach(carStatusList -> {
-            carStatusList.forEach(carStatus -> {
-                System.out.println(carStatus.name() + " : " + carStatus.position());
-            });
-            System.out.println();
-        });
+        List<String> winner = raceGame.getWinnerNames();
 
-        System.out.println(raceGame.getWinnerNames());
+        List<String> round =  OutputParser.formatRoundResults(roundResult);
+        String winners = OutputParser.formatWinnerList(winner);
+
+        round.forEach(System.out::println);
+        System.out.println(winners);
     }
 }
