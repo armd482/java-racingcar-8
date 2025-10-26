@@ -1,8 +1,6 @@
 package racingcar.util;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import racingcar.model.CarStatus;
 
@@ -20,6 +18,6 @@ public class OutputParser {
     }
 
     public static String formatWinnerList(List<String> winners) {
-        return String.join(",", winners);
+        return String.join(", ", winners);
     }
 }
