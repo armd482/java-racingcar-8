@@ -10,8 +10,7 @@ public class OutputParser {
 
     private static List<String> formatCarPositions(List<CarStatus> carStatuses) {
         return carStatuses.stream()
-                            .map(carStatus -> carStatus.name() + CAR_POSITION_SEPARATOR + MOVE_MARK
-                            .repeat(carStatus.position())).toList();
+                            .map(carStatus -> carStatus.name() + CAR_POSITION_SEPARATOR + MOVE_MARK.repeat(carStatus.position())).toList();
     }
 
     public static List<List<String>> formatRoundResults(List<List<CarStatus>> carStatuses) {

@@ -20,7 +20,7 @@ public class RaceGame {
 
     public void start() {
         for (int i = 0; i < attempts; i++) {
-            moveCars();
+            moveCarsForRound();
             roundStatus.add(getCarRoundStatus());
         }
     }
@@ -40,13 +40,13 @@ public class RaceGame {
                 .toList();
     }
 
-    private void moveCars() {
+    private void moveCarsForRound() {
         for(Car car : cars) {
-            carMove(car);
+            moveCar(car);
         }
     }
 
-    private void carMove(Car car) {
+    private void moveCar(Car car) {
         if (moveStrategy.isMoveable()) {
             car.moveForward();
         }

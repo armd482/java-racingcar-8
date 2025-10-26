@@ -21,6 +21,7 @@ public class RacingGameController {
 
     public void run() {
         String carsInput = inputView.getCarName();
+
         String[] carNames = InputParser.parseCarNames(carsInput);
         List<Car> cars = Arrays.stream(carNames).map(Car::new).toList();
 
