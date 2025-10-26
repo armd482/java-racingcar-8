@@ -12,7 +12,7 @@ public class RaceGame {
     private final List<List<CarStatus>> roundStatus =  new ArrayList<>();
 
     public RaceGame(List<Car> cars, int attempts, MoveStrategy moveStrategy) {
-        this.cars = cars;
+        this.cars = new ArrayList<>(cars);
         this.moveStrategy = moveStrategy;
         this.attempts = attempts;
 
