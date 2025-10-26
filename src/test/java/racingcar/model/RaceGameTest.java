@@ -1,4 +1,4 @@
-package racingcar.util.model;
+package racingcar.model;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
