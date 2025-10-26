@@ -9,12 +9,15 @@ import racingcar.model.strategy.RandomMoveStrategy;
 import racingcar.util.InputParser;
 import racingcar.util.OutputParser;
 import racingcar.view.InputView;
+import racingcar.view.OutputView;
 
 public class RacingGameController {
     private final InputView inputView;
+    private final OutputView outputView;
 
-    public RacingGameController(InputView inputView) {
+    public RacingGameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
+        this.outputView = outputView;
     }
 
     public void run() {
@@ -28,13 +31,11 @@ public class RacingGameController {
         RaceGame raceGame = new RaceGame(cars, attempt, new RandomMoveStrategy());
 
         raceGame.start();
-        List<List<CarStatus>> roundResult = raceGame.getRoundResult();
-        List<String> winner = raceGame.getWinnerNames();
 
-        List<String> round =  OutputParser.formatRoundResults(roundResult);
-        String winners = OutputParser.formatWinnerList(winner);
+        List<String> roundResult =  OutputParser.formatRoundResults(raceGame.getRoundResult());
+        String winners = OutputParser.formatWinnerList(raceGame.getWinnerNames());
 
-        round.forEach(System.out::println);
-        System.out.println(winners);
+        outputView.displayRoundResult(roundResult);
+        outputView.displayWinnerResult(winners);
     }
 }
