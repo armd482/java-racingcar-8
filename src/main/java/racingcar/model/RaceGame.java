@@ -48,7 +48,7 @@ public class RaceGame {
 
     private void carMove(Car car) {
         if (moveStrategy.isMoveable()) {
-            car.go();
+            car.moveForward();
         }
     }
 

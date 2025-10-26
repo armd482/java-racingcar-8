@@ -25,7 +25,7 @@ public class InputParser {
 
     public static Integer parseAttempt(String attemptInput) {
         if (attemptInput == null || attemptInput.isBlank()) {
-            throw new IllegalArgumentException(ErrorMessage.EMPTY_ATTEMEPT_INPUT.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_ATTEMPT_INPUT.getMessage());
         }
 
         try {
