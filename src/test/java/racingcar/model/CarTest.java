@@ -18,10 +18,10 @@ public class CarTest {
     @DisplayName("자동차 이동 메서드 테스트")
     void carMoveTest() {
         Car car = new Car("pobi");
-        car.go();
+        car.moveForward();
         assertThat(1).isEqualTo(car.getPosition());
 
-        car.go();
+        car.moveForward();
         assertThat(2).isEqualTo(car.getPosition());
     }
 }
