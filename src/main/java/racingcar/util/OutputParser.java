@@ -7,11 +7,6 @@ public class OutputParser {
     private static final String CAR_POSITION_SEPARATOR = " : ";
     private static final String MOVE_MARK = "-";
 
-    private static List<String> formatCarPositions(List<CarStatus> carStatuses) {
-        return carStatuses.stream()
-                            .map(carStatus -> carStatus.name() + CAR_POSITION_SEPARATOR + MOVE_MARK.repeat(carStatus.position())).toList();
-    }
-
     public static List<List<String>> formatRoundResults(List<List<CarStatus>> carStatuses) {
         return carStatuses.stream()
                 .map(OutputParser::formatCarPositions)
@@ -20,5 +15,10 @@ public class OutputParser {
 
     public static String formatWinnerList(List<String> winners) {
         return String.join(", ", winners);
+    }
+
+    private static List<String> formatCarPositions(List<CarStatus> carStatuses) {
+        return carStatuses.stream()
+                .map(carStatus -> carStatus.name() + CAR_POSITION_SEPARATOR + MOVE_MARK.repeat(carStatus.position())).toList();
     }
 }
